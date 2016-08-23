@@ -13,11 +13,14 @@ public class Logger {
         System.out.println("primitive: " + message);
     }
 
-    public static void log(String message) {
-        System.out.println("string: " + message);
-    }
-
     public static void log(Object message) {
-        System.out.println("reference: " + message);
+        String type;
+        if(message instanceof String) {
+            type = "string: ";
+        }
+        else {
+            type = "reference: ";
+        }
+        System.out.println(type + message);
     }
 }
