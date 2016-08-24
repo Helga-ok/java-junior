@@ -2,13 +2,26 @@ package com.acme.edu;
 
 public class Logger {
     private static NumberSequence numberSequence = new NumberSequence();
+    private static StringSequence stringSequence = new StringSequence();
+    private static Type currentType = Type.NUMBER;
+    private enum Type {
+        STRING, NUMBER
+    }
 
     public static void log(int message) {
+        if(currentType == Type.STRING){
+            terminate();
+        }
+        currentType = Type.NUMBER;
         numberSequence.setMaxValue(Integer.MAX_VALUE);
         numberSequence.add(message);
     }
 
     public static void log(byte message) {
+        if(currentType == Type.STRING){
+            terminate();
+        }
+        currentType = Type.NUMBER;
         numberSequence.setMaxValue(Byte.MAX_VALUE);
         numberSequence.add(message);
     }
@@ -22,18 +35,26 @@ public class Logger {
     }
 
     public static void log(Object message) {
-        String type;
+        String result;
         if(message instanceof String) {
-            type = "string: ";
+            currentType = Type.STRING;
+            result = "string: ";
+            stringSequence.add(result + message);
+        } else {
+            result = "reference: ";
+            System.out.println(result + message);
         }
-        else {
-            type = "reference: ";
-        }
-        System.out.println(type + message);
+
     }
 
-    public static void terminateNumSeq() {
-        System.out.println(numberSequence.getResult());
+    public static void terminate() {
+        String result;
+        if(currentType == Type.NUMBER) {
+            result = numberSequence.getResult();
+        } else {
+            result = stringSequence.getResult();
+        }
+        System.out.println(result);
     }
 
 }

@@ -28,10 +28,10 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 1");
         Logger.log(1);
         Logger.log(2);
-        Logger.terminateNumSeq();
+        Logger.terminate();
         Logger.log("str 2");
         Logger.log(0);
-        Logger.terminateNumSeq();
+        Logger.terminate();
         //endregion
 
         //region then
@@ -52,10 +52,10 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 1");
         Logger.log(10);
         Logger.log(Integer.MAX_VALUE);
-        Logger.terminateNumSeq();
+        Logger.terminate();
         Logger.log("str 2");
         Logger.log(0);
-        Logger.terminateNumSeq();
+        Logger.terminate();
         //endregion
 
         //region then
@@ -77,10 +77,10 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 1");
         Logger.log((byte)10);
         Logger.log(Byte.MAX_VALUE);
-        Logger.terminateNumSeq();
+        Logger.terminate();
         Logger.log("str 2");
         Logger.log(0);
-        Logger.terminateNumSeq();
+        Logger.terminate();
         //endregion
 
         //region then
@@ -92,7 +92,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-    /*
+
     @Test
     public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
         //region when
@@ -100,11 +100,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 2");
         Logger.log("str 2");
         Logger.log(0);
-        Logger.terminateNumSeq();
+        Logger.terminate();
         Logger.log("str 2");
         Logger.log("str 3");
         Logger.log("str 3");
         Logger.log("str 3");
+        Logger.terminate();
         //endregion
 
         //region then
@@ -114,7 +115,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains("str 2" + System.lineSeparator());
         assertSysoutContains("str 3 (x3)" + System.lineSeparator());
         //endregion
-    }*/
+    }
 
 
 }
