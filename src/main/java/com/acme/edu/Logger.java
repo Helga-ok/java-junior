@@ -1,28 +1,16 @@
 package com.acme.edu;
 
 public class Logger {
-    private static int sum;
-    private static int maxValue;
-    private static boolean meetMaxValue = false;
+    private static NumberSequence numberSequence = new NumberSequence();
 
     public static void log(int message) {
-        maxValue = Integer.MAX_VALUE;
-        long longSum = (long)sum + message;
-        if(longSum < maxValue) {
-            sum += message;
-        } else {
-            meetMaxValue = true;
-        }
+        numberSequence.setMaxValue(Integer.MAX_VALUE);
+        numberSequence.add(message);
     }
 
     public static void log(byte message) {
-        maxValue = Byte.MAX_VALUE;
-        long longSum = (long)sum + message;
-        if(longSum < maxValue) {
-            sum += message;
-        } else {
-            meetMaxValue = true;
-        }
+        numberSequence.setMaxValue(Byte.MAX_VALUE);
+        numberSequence.add(message);
     }
 
     public static void log(char message) {
@@ -45,15 +33,7 @@ public class Logger {
     }
 
     public static void terminateNumSeq() {
-        String result = "primitive: " + sum;
-        if(meetMaxValue) {
-            result += " + " + maxValue;
-        }
-        System.out.println(result);
-
-        sum = 0;
-        meetMaxValue = false;
-        maxValue = 0;
+        System.out.println(numberSequence.getResult());
     }
 
 }
