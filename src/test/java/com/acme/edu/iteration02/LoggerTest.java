@@ -100,6 +100,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 2");
         Logger.log("str 2");
         Logger.log(0);
+        Logger.terminateNumSeq();
         Logger.log("str 2");
         Logger.log("str 3");
         Logger.log("str 3");
@@ -107,13 +108,11 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
 
         //region then
-        assertSysoutContains(
-            "str 1\n" +
-            "str 2 (x2)\n" +
-            "0\n" +
-            "str 2\n" +
-            "str 3 (x3)\n"
-        );
+        assertSysoutContains("str 1" + System.lineSeparator());
+        assertSysoutContains("str 2 (x2)" + System.lineSeparator());
+        assertSysoutContains("0" + System.lineSeparator());
+        assertSysoutContains("str 2" + System.lineSeparator());
+        assertSysoutContains("str 3 (x3)" + System.lineSeparator());
         //endregion
     }*/
 
