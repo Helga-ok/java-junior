@@ -1,8 +1,9 @@
 package com.acme.edu;
 
 public class Logger {
+    private static int sum;
     public static void log(int message) {
-        System.out.println("primitive: " + message);
+        sum += message;
     }
 
     public static void log(char message) {
@@ -22,5 +23,10 @@ public class Logger {
             type = "reference: ";
         }
         System.out.println(type + message);
+    }
+
+    public static void terminate() {
+        System.out.println(sum);
+        sum = 0;
     }
 }
