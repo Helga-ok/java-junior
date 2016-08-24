@@ -2,11 +2,23 @@ package com.acme.edu;
 
 public class Logger {
     private static int sum;
+    private static int maxValue;
     private static boolean meetMaxValue = false;
 
     public static void log(int message) {
+        maxValue = Integer.MAX_VALUE;
         long longSum = (long)sum + message;
-        if(longSum < Integer.MAX_VALUE) {
+        if(longSum < maxValue) {
+            sum += message;
+        } else {
+            meetMaxValue = true;
+        }
+    }
+
+    public static void log(byte message) {
+        maxValue = Byte.MAX_VALUE;
+        long longSum = (long)sum + message;
+        if(longSum < maxValue) {
             sum += message;
         } else {
             meetMaxValue = true;
@@ -35,12 +47,13 @@ public class Logger {
     public static void terminateNumSeq() {
         String result = "primitive: " + sum;
         if(meetMaxValue) {
-            result += " + " + Integer.MAX_VALUE;
+            result += " + " + maxValue;
         }
         System.out.println(result);
 
         sum = 0;
         meetMaxValue = false;
+        maxValue = 0;
     }
 
 }
