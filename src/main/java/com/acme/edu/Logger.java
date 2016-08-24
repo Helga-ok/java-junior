@@ -3,12 +3,13 @@ package com.acme.edu;
 public class Logger {
     private static int sum;
     private static boolean meetMaxValue = false;
+
     public static void log(int message) {
-        long longSum = sum + message;
+        long longSum = (long)sum + message;
         if(longSum < Integer.MAX_VALUE) {
             sum += message;
         } else {
-            if(!meetMaxValue) meetMaxValue = true;
+            meetMaxValue = true;
         }
     }
 
@@ -32,10 +33,12 @@ public class Logger {
     }
 
     public static void terminateNumSeq() {
-        System.out.println("primitive: " + sum);
+        String result = "primitive: " + sum;
         if(meetMaxValue) {
-            System.out.print(Integer.MAX_VALUE);
+            result += " + " + Integer.MAX_VALUE;
         }
+        System.out.println(result);
+
         sum = 0;
         meetMaxValue = false;
     }
