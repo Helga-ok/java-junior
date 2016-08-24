@@ -2,8 +2,14 @@ package com.acme.edu;
 
 public class Logger {
     private static int sum;
+    private static boolean meetMaxValue = false;
     public static void log(int message) {
-        sum += message;
+        long longSum = sum + message;
+        if(longSum < Integer.MAX_VALUE) {
+            sum += message;
+        } else {
+            if(!meetMaxValue) meetMaxValue = true;
+        }
     }
 
     public static void log(char message) {
@@ -27,10 +33,11 @@ public class Logger {
 
     public static void terminateNumSeq() {
         System.out.println("primitive: " + sum);
+        if(meetMaxValue) {
+            System.out.print(Integer.MAX_VALUE);
+        }
         sum = 0;
+        meetMaxValue = false;
     }
 
-    public static void terminateConcat() {
-
-    }
 }
