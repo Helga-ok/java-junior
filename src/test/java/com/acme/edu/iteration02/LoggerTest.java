@@ -28,16 +28,20 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 1");
         Logger.log(1);
         Logger.log(2);
+        Logger.terminate();
         Logger.log("str 2");
         Logger.log(0);
+        Logger.terminate();
         //endregion
 
         //region then
         assertSysoutContains(
-            "str 1\n" +
-            "3\n" +
-            "str 2\n" +
-            "0\n"
+            "str 1" + System.lineSeparator() +
+            "3" + System.lineSeparator()
+        );
+        assertSysoutContains(
+            "str 2" + System.lineSeparator() +
+            "0" + System.lineSeparator()
         );
         //endregion
     }
