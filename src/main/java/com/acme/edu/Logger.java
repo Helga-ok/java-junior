@@ -25,8 +25,12 @@ public class Logger {
         System.out.println(type + message);
     }
 
-    public static void terminate() {
-        System.out.println(sum);
+    public static void terminateNumSeq() {
+        System.out.println("primitive: " + sum);
         sum = 0;
+    }
+
+    public static void terminateConcat() {
+
     }
 }

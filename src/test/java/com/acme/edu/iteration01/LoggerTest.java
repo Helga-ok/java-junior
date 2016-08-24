@@ -23,16 +23,17 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     //endregion
 
     @Test
-    public void shouldLogInteger() throws IOException {
+    public void
+    shouldLogInteger() throws IOException {
         //region when
         Logger.log(1);
         Logger.log(0);
         Logger.log(-1);
-        Logger.terminate();
+        Logger.terminateNumSeq();
         //endregion
 
         //region then
-        assertSysoutEquals("0" + System.lineSeparator());
+        assertSysoutEquals("primitive: 0" + System.lineSeparator());
         //endregion
     }
 
@@ -42,11 +43,11 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log((byte)1);
         Logger.log((byte)0);
         Logger.log((byte)-1);
-        Logger.terminate();
+        Logger.terminateNumSeq();
         //endregion
 
         //region then
-        assertSysoutEquals("0" + System.lineSeparator());
+        assertSysoutEquals("primitive: 0" + System.lineSeparator());
         //endregion
     }
 

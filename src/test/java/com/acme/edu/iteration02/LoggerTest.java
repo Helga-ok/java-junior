@@ -28,21 +28,21 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 1");
         Logger.log(1);
         Logger.log(2);
-        Logger.terminate();
+        Logger.terminateNumSeq();
         Logger.log("str 2");
         Logger.log(0);
-        Logger.terminate();
+        Logger.terminateNumSeq();
         //endregion
 
         //region then
         assertSysoutContains(
-            "str 1" + System.lineSeparator() +
-            "3" + System.lineSeparator()
-        );
+            "str 1" + System.lineSeparator());
         assertSysoutContains(
-            "str 2" + System.lineSeparator() +
-            "0" + System.lineSeparator()
-        );
+            "3" + System.lineSeparator());
+        assertSysoutContains(
+            "str 2" + System.lineSeparator());
+        assertSysoutContains(
+            "0" + System.lineSeparator());
         //endregion
     }
 
@@ -52,8 +52,10 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 1");
         Logger.log(10);
         Logger.log(Integer.MAX_VALUE);
+        Logger.terminateNumSeq();
         Logger.log("str 2");
         Logger.log(0);
+        Logger.terminateNumSeq();
         //endregion
 
         //region then
@@ -73,6 +75,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 1");
         Logger.log((byte)10);
         Logger.log((byte)Byte.MAX_VALUE);
+        Logger.terminateNumSeq();
         Logger.log("str 2");
         Logger.log(0);
         //endregion
@@ -87,7 +90,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         );
         //endregion
     }
-
+    */
+    /*
     @Test
     public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
         //region when
@@ -110,7 +114,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
             "str 3 (x3)\n"
         );
         //endregion
-    }
+    }*/
 
-    */
+
 }
