@@ -4,6 +4,9 @@ public class Logger {
     private static NumberSequence numberSequence = new NumberSequence();
     private static StringSequence stringSequence = new StringSequence();
     private static Type currentType = Type.NUMBER;
+
+    private static Saver saver = new ConsoleSaver();
+
     private enum Type {
         STRING, NUMBER
     }
@@ -27,11 +30,11 @@ public class Logger {
     }
 
     public static void log(char message) {
-        System.out.println("char: " + message);
+        saver.save("char: " + message);
     }
 
     public static void log(boolean message) {
-        System.out.println("primitive: " + message);
+        saver.save("primitive: " + message);
     }
 
     public static void log(Object message) {
@@ -42,7 +45,7 @@ public class Logger {
             stringSequence.add(result + message);
         } else {
             result = "reference: ";
-            System.out.println(result + message);
+            saver.save(result + message);
         }
 
     }
@@ -54,7 +57,7 @@ public class Logger {
         } else {
             result = stringSequence.getResult();
         }
-        System.out.println(result);
+        saver.save(result);
     }
 
 }
