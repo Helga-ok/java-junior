@@ -86,14 +86,15 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogBoolean() throws IOException {
         //region when
+        Logger.setPrefix("Prefix ");
+        Logger.setPostfix(" Postfix");
         Logger.log(true);
         Logger.log(false);
         //endregion
 
         //region then
-        assertSysoutContains("primitive: ");
-        assertSysoutContains("true");
-        assertSysoutContains("false");
+        assertSysoutContains("Prefix primitive: true Postfix");
+        assertSysoutContains("Prefix primitive: false Postfix");
         //endregion
     }
 

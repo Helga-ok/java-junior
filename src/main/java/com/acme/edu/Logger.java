@@ -4,8 +4,8 @@ public class Logger {
     private static NumberSequence numberSequence = new NumberSequence();
     private static StringSequence stringSequence = new StringSequence();
     private static Type currentType = Type.NUMBER;
-
     private static Saver saver = new ConsoleSaver();
+    private static Decorator decorator = new Decorator();
 
     private enum Type {
         STRING, NUMBER
@@ -34,7 +34,7 @@ public class Logger {
     }
 
     public static void log(boolean message) {
-        saver.save("primitive: " + message);
+        saver.save(decorator.decorate("primitive: " + message));
     }
 
     public static void log(Object message) {
@@ -47,7 +47,6 @@ public class Logger {
             result = "reference: ";
             saver.save(result + message);
         }
-
     }
 
     public static void terminate() {
@@ -60,4 +59,11 @@ public class Logger {
         saver.save(result);
     }
 
+    public static void setPrefix(String prefix) {
+        decorator.setPrefix(prefix);
+    }
+
+    public static void setPostfix(String postfix) {
+        decorator.setPostfix(postfix);
+    }
 }
