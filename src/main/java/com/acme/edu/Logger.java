@@ -1,5 +1,8 @@
 package com.acme.edu;
 
+/**
+ * Logger provides a functionality to log a message stream.
+ */
 public class Logger {
     private static NumberSequence numberSequence = new NumberSequence();
     private static StringSequence stringSequence = new StringSequence();
@@ -11,6 +14,10 @@ public class Logger {
         STRING, NUMBER
     }
 
+    /**
+     * Log number as integer.
+     * @param message message to be logged.
+     */
     public static void log(int message) {
         if(currentType == Type.STRING){
             terminate();
@@ -20,6 +27,10 @@ public class Logger {
         numberSequence.add(message);
     }
 
+    /**
+     * Log number as byte.
+     * @param message message to be logged.
+     */
     public static void log(byte message) {
         if(currentType == Type.STRING){
             terminate();
@@ -29,14 +40,26 @@ public class Logger {
         numberSequence.add(message);
     }
 
+    /**
+     * Log a logic expression.
+     * @param message message to be logged.
+     */
     public static void log(char message) {
         saver.save("char: " + message);
     }
 
+    /**
+     * Log character.
+     * @param message message to be logged.
+     */
     public static void log(boolean message) {
         saver.save(decorator.decorate("primitive: " + message));
     }
 
+    /**
+     * Log object.
+     * @param message message to be logged.
+     */
     public static void log(Object message) {
         String result;
         if(message instanceof String) {
@@ -49,6 +72,9 @@ public class Logger {
         }
     }
 
+    /**
+     * Terminate the sequence of messages.
+     */
     public static void terminate() {
         String result;
         if(currentType == Type.NUMBER) {
@@ -59,10 +85,18 @@ public class Logger {
         saver.save(result);
     }
 
+    /**
+     * Set prefix in decorator.
+     * @param prefix prefix to append at the beginning.
+     */
     public static void setPrefix(String prefix) {
         decorator.setPrefix(prefix);
     }
 
+    /**
+     * Set postfix in decorator.
+     * @param postfix postfix to append at the end.
+     */
     public static void setPostfix(String postfix) {
         decorator.setPostfix(postfix);
     }
