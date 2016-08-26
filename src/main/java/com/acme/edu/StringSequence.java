@@ -19,20 +19,18 @@ class StringSequence {
     void add(String message) {
         if(message.equals(string)){
             counter++;
-        } else {
-            if(counter == 0){
-                result += message;
-                counter++;
-            } else {
-                if (counter > 1) {
-                    result += " (x" + counter + ")";
-                }
-                result += System.lineSeparator();
-                counter = 1;
-            }
-
-            string = message;
+            return;
         }
+        switch(counter) {
+            case 0: result += message;
+                break;
+            case 1: result += System.lineSeparator();
+                break;
+            default: result += " (x" + counter + ")" + System.lineSeparator();
+                break;
+        }
+        counter = 1;
+        string = message;
     }
 
     private void reset(){
