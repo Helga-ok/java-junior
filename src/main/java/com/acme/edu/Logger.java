@@ -4,17 +4,18 @@ package com.acme.edu;
  * Logger provides a functionality to log a message stream.
  */
 public class Logger {
-    private static NumberSequence numberSequence = new NumberSequence();
-    private static StringSequence stringSequence = new StringSequence();
-    private static Type currentType = Type.NUMBER;
-    private static Decorator decorator = new Decorator();
+    private NumberSequence numberSequence = new NumberSequence();
+    private StringSequence stringSequence = new StringSequence();
+    private Type currentType = Type.NUMBER;
+    private Decorator decorator;
     private Saver[] savers;
 
     private enum Type {
         STRING, NUMBER
     }
 
-    public Logger(Saver... savers) {
+    public Logger(Decorator decorator, Saver... savers) {
+        this.decorator = decorator;
         this.savers = savers;
     }
 
@@ -22,7 +23,7 @@ public class Logger {
      * Log number as integer.
      * @param message message to be logged.
      */
-    public static void log(int message) {
+    public void log(int message) {
         if(currentType == Type.STRING){
             terminate();
         }
@@ -35,7 +36,7 @@ public class Logger {
      * Log number as byte.
      * @param message message to be logged.
      */
-    public static void log(byte message) {
+    public void log(byte message) {
         if(currentType == Type.STRING){
             terminate();
         }
@@ -48,23 +49,27 @@ public class Logger {
      * Log a logic expression.
      * @param message message to be logged.
      */
-    public static void log(char message) {
-        saver.save("char: " + message);
+    public void log(char message) {
+        for (Saver saver:savers) {
+            saver.save("char: " + message);
+        }
     }
 
     /**
      * Log character.
      * @param message message to be logged.
      */
-    public static void log(boolean message) {
-        saver.save(decorator.decorate("primitive: " + message));
+    public void log(boolean message) {
+        for (Saver saver:savers) {
+            saver.save(decorator.decorate("primitive: " + message));
+        }
     }
 
     /**
      * Log object.
      * @param message message to be logged.
      */
-    public static void log(Object message) {
+    public void log(Object message) {
         String result;
         if(message instanceof String) {
             currentType = Type.STRING;
@@ -72,36 +77,24 @@ public class Logger {
             stringSequence.add(result + message);
         } else {
             result = "reference: ";
-            saver.save(result + message);
+            for (Saver saver:savers) {
+                saver.save(result + message);
+            }
         }
     }
 
     /**
      * Terminate the sequence of messages.
      */
-    public static void terminate() {
+    public void terminate() {
         String result;
         if(currentType == Type.NUMBER) {
             result = numberSequence.getResult();
         } else {
             result = stringSequence.getResult();
         }
-        saver.save(result);
-    }
-
-    /**
-     * Set prefix in decorator.
-     * @param prefix prefix to append at the beginning.
-     */
-    public static void setPrefix(String prefix) {
-        decorator.setPrefix(prefix);
-    }
-
-    /**
-     * Set postfix in decorator.
-     * @param postfix postfix to append at the end.
-     */
-    public static void setPostfix(String postfix) {
-        decorator.setPostfix(postfix);
+        for (Saver saver:savers) {
+            saver.save(result);
+        }
     }
 }

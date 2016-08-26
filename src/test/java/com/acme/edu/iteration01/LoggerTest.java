@@ -25,10 +25,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void
     shouldLogInteger() throws IOException {
         //region when
-        Logger.log(1);
-        Logger.log(0);
-        Logger.log(-1);
-        Logger.terminate();
+        Saver consoleSaver = message -> System.out.println(message);
+        Logger logger = new Logger(new Decorator("", ""), consoleSaver);
+        logger.log(1);
+        logger.log(0);
+        logger.log(-1);
+        logger.terminate();
         //endregion
 
         //region then
@@ -39,10 +41,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogByte() throws IOException {
         //region when
-        Logger.log((byte)1);
-        Logger.log((byte)0);
-        Logger.log((byte)-1);
-        Logger.terminate();
+        Saver consoleSaver = message -> System.out.println(message);
+        Logger logger = new Logger(new Decorator("", ""), consoleSaver);
+        logger.log((byte)1);
+        logger.log((byte)0);
+        logger.log((byte)-1);
+        logger.terminate();
         //endregion
 
         //region then
@@ -56,8 +60,10 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogChar() throws IOException {
         //region when
-        Logger.log('a');
-        Logger.log('b');
+        Saver consoleSaver = message -> System.out.println(message);
+        Logger logger = new Logger(new Decorator("", ""), consoleSaver);
+        logger.log('a');
+        logger.log('b');
         //endregion
 
         //region then
@@ -70,9 +76,11 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogString() throws IOException {
         //region when
-        Logger.log("test string 1");
-        Logger.log("other str");
-        Logger.terminate();
+        Saver consoleSaver = message -> System.out.println(message);
+        Logger logger = new Logger(new Decorator("", ""), consoleSaver);
+        logger.log("test string 1");
+        logger.log("other str");
+        logger.terminate();
         //endregion
 
         //region then
@@ -85,10 +93,10 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogBoolean() throws IOException {
         //region when
-        Saver consoleSaver = param -> new ConsoleSaver();
-        new Logger(new Decorator("Prefix ", " Postfix"), consoleSaver, consoleSaver);
-        Logger.log(true);
-        Logger.log(false);
+        Saver consoleSaver = message -> System.out.println(message);
+        Logger logger = new Logger(new Decorator("Prefix ", " Postfix"), consoleSaver, consoleSaver);
+        logger.log(true);
+        logger.log(false);
         //endregion
 
         //region then
@@ -100,7 +108,9 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogReference() throws IOException {
         //region when
-        Logger.log(new Object());
+        Saver consoleSaver = message -> System.out.println(message);
+        Logger logger = new Logger(new Decorator("", ""), consoleSaver);
+        logger.log(new Object());
         //endregion
 
         //region then
@@ -108,6 +118,4 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains("@");
         //endregion
     }
-
-
 }
