@@ -3,10 +3,13 @@ package com.acme.edu;
 /**
  * Decorator constructs result string.
  */
- class Decorator {
+ public class Decorator {
     private String prefix = "";
     private String postfix = "";
 
+    Decorator(String prefix, String postfix) {
+
+    }
     /**
      * Decorate an original message.
      * @param message original message.

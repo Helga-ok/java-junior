@@ -7,11 +7,15 @@ public class Logger {
     private static NumberSequence numberSequence = new NumberSequence();
     private static StringSequence stringSequence = new StringSequence();
     private static Type currentType = Type.NUMBER;
-    private static Saver saver = new ConsoleSaver();
     private static Decorator decorator = new Decorator();
+    private Saver[] savers;
 
     private enum Type {
         STRING, NUMBER
+    }
+
+    public Logger(Saver... savers) {
+        this.savers = savers;
     }
 
     /**

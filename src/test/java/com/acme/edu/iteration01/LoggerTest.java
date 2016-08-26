@@ -1,7 +1,6 @@
 package com.acme.edu.iteration01;
 
-import com.acme.edu.Logger;
-import com.acme.edu.SysoutCaptureAndAssertionAbility;
+import com.acme.edu.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -86,8 +85,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogBoolean() throws IOException {
         //region when
-        Logger.setPrefix("Prefix ");
-        Logger.setPostfix(" Postfix");
+        Saver consoleSaver = param -> new ConsoleSaver();
+        new Logger(new Decorator("Prefix ", " Postfix"), consoleSaver, consoleSaver);
         Logger.log(true);
         Logger.log(false);
         //endregion
