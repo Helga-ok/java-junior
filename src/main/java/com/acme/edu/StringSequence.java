@@ -24,7 +24,6 @@ class StringSequence {
                 result += message;
                 counter++;
             } else {
-                //result += string;
                 if (counter > 1) {
                     result += " (x" + counter + ")";
                 }
