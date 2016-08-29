@@ -63,12 +63,14 @@ public class Logger {
      * Log character.
      * @param message message to be logged.
      */
-    public void log(boolean message) {
+    public void log(boolean message) throws LogException {
         for (Saver saver:savers) {
             try {
-                saver.save(decorator.decorate("primitive: " + message));
-            } catch (SaveException e) {
+                String result = decorator.decorate("primitive: " + message);
+                saver.save(result);
+            } catch (SaveException | DecorateException e) {
                 e.printStackTrace();
+                throw new LogException(e);
             }
         }
     }

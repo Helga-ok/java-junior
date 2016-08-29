@@ -17,7 +17,7 @@ package com.acme.edu;
      * @param message original message.
      * @return wrapped message.
      */
-    String decorate(String message) {
+    public String decorate(String message) throws DecorateException {
         return prefix + message + postfix + System.lineSeparator();
     }
 }

@@ -1,23 +1,23 @@
 package com.acme.edu;
 
-class SaveException extends Exception {
-    SaveException() {
+public class SaveException extends Exception {
+    public SaveException() {
         super();
     }
 
-    SaveException(String message) {
+    public SaveException(String message) {
         super(message);
     }
 
-    SaveException(String message, Throwable cause) {
+    public SaveException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    SaveException(Throwable cause) {
+    public SaveException(Throwable cause) {
         super(cause);
     }
 
-    SaveException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public SaveException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

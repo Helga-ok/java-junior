@@ -92,8 +92,13 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator("Prefix ", " Postfix"), consoleSaver, consoleSaver);
-        logger.log(true);
-        logger.log(false);
+        try {
+            logger.log(true);
+            logger.log(false);
+        } catch (LogException e) {
+            e.printStackTrace();
+        }
+
         //endregion
 
         //region then
