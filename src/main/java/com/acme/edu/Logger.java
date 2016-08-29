@@ -51,7 +51,11 @@ public class Logger {
      */
     public void log(char message) {
         for (Saver saver:savers) {
-            saver.save("char: " + message);
+            try {
+                saver.save("char: " + message);
+            } catch (SaveException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -61,7 +65,11 @@ public class Logger {
      */
     public void log(boolean message) {
         for (Saver saver:savers) {
-            saver.save(decorator.decorate("primitive: " + message));
+            try {
+                saver.save(decorator.decorate("primitive: " + message));
+            } catch (SaveException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -78,7 +86,11 @@ public class Logger {
         } else {
             result = "reference: ";
             for (Saver saver:savers) {
-                saver.save(result + message);
+                try {
+                    saver.save(result + message);
+                } catch (SaveException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -94,7 +106,11 @@ public class Logger {
             result = stringSequence.getResult();
         }
         for (Saver saver:savers) {
-            saver.save(result);
+            try {
+                saver.save(result);
+            } catch (SaveException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
