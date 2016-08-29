@@ -23,7 +23,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
     @Test
     public void
-    shouldLogInteger() throws IOException {
+    shouldLogInteger() throws IOException, LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator("", ""), consoleSaver);
@@ -39,7 +39,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogByte() throws IOException {
+    public void shouldLogByte() throws IOException, LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator("", ""), consoleSaver);
@@ -55,7 +55,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogChar() throws IOException {
+    public void shouldLogChar() throws IOException, LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator("", ""), consoleSaver);
@@ -71,7 +71,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogString() throws IOException {
+    public void shouldLogString() throws IOException, LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator("", ""), consoleSaver);
@@ -88,17 +88,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogBoolean() throws IOException {
+    public void shouldLogBoolean() throws IOException, LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator("Prefix ", " Postfix"), consoleSaver, consoleSaver);
-        try {
-            logger.log(true);
-            logger.log(false);
-        } catch (LogException e) {
-            e.printStackTrace();
-        }
-
+        logger.log(true);
+        logger.log(false);
         //endregion
 
         //region then
@@ -108,7 +103,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogReference() throws IOException {
+    public void shouldLogReference() throws IOException, LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator("", ""), consoleSaver);

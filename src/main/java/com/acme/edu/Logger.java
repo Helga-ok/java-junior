@@ -23,7 +23,7 @@ public class Logger {
      * Log number as integer.
      * @param message message to be logged.
      */
-    public void log(int message) {
+    public void log(int message) throws LogException {
         if(currentType == Type.STRING){
             terminate();
         }
@@ -36,7 +36,7 @@ public class Logger {
      * Log number as byte.
      * @param message message to be logged.
      */
-    public void log(byte message) {
+    public void log(byte message) throws LogException {
         if(currentType == Type.STRING){
             terminate();
         }
@@ -49,12 +49,13 @@ public class Logger {
      * Log a logic expression.
      * @param message message to be logged.
      */
-    public void log(char message) {
+    public void log(char message) throws LogException {
         for (Saver saver:savers) {
             try {
                 saver.save("char: " + message);
             } catch (SaveException e) {
                 e.printStackTrace();
+                throw new LogException(e);
             }
         }
     }
@@ -79,7 +80,7 @@ public class Logger {
      * Log object.
      * @param message message to be logged.
      */
-    public void log(Object message) {
+    public void log(Object message) throws LogException {
         String result;
         if(message instanceof String) {
             currentType = Type.STRING;
@@ -92,6 +93,7 @@ public class Logger {
                     saver.save(result + message);
                 } catch (SaveException e) {
                     e.printStackTrace();
+                    throw new LogException(e);
                 }
             }
         }
@@ -100,7 +102,7 @@ public class Logger {
     /**
      * Terminate the sequence of messages.
      */
-    public void terminate() {
+    public void terminate() throws LogException {
         String result;
         if(currentType == Type.NUMBER) {
             result = numberSequence.getResult();
@@ -112,6 +114,7 @@ public class Logger {
                 saver.save(result);
             } catch (SaveException e) {
                 e.printStackTrace();
+                throw new LogException(e);
             }
         }
     }

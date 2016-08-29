@@ -1,9 +1,6 @@
 package com.acme.edu.iteration02;
 
-import com.acme.edu.Decorator;
-import com.acme.edu.Logger;
-import com.acme.edu.Saver;
-import com.acme.edu.SysoutCaptureAndAssertionAbility;
+import com.acme.edu.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +22,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     //endregion
 
     @Test
-    public void shouldLogSequentIntegersAsSum() throws IOException {
+    public void shouldLogSequentIntegersAsSum() throws IOException, LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator(" ", " "), consoleSaver);
@@ -51,7 +48,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() {
+    public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() throws LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator(" ", " "), consoleSaver);
@@ -78,7 +75,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogCorrectlyByteOverflowWhenSequentBytes() {
+    public void shouldLogCorrectlyByteOverflowWhenSequentBytes() throws LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator(" ", " "), consoleSaver);
@@ -102,7 +99,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
 
     @Test
-    public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
+    public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException, LogException {
         //region when
         Saver consoleSaver = message -> System.out.println(message);
         Logger logger = new Logger(new Decorator(" ", " "), consoleSaver);
