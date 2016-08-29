@@ -1,4 +1,4 @@
-package mytest.logger;
+package com.acme.edu.logger;
 
 import com.acme.edu.*;
 import org.junit.Test;
@@ -8,9 +8,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class LoggerTest {
-    //region given
-    //endregion
-
     @Test
     public void shouldPrintTypeAndCharacterWhenCharacterLogged() throws LogException, SaveException {
         //region Given

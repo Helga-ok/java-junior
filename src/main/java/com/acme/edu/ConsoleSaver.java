@@ -3,7 +3,7 @@ package com.acme.edu;
 /**
  * ConsoleSaver displays message on the screen.
  */
-public class ConsoleSaver implements Saver {
+class ConsoleSaver implements Saver {
     /**
      * Display message on the screen.
      * @param message the string to save.

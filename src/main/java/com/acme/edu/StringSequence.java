@@ -1,18 +1,18 @@
 package com.acme.edu;
 
-public class StringSequence {
+class StringSequence {
     private String result = "";
     private String string = "";
     private int counter;
 
-    public String getResult() {
+    String getResult() {
         add("");
         String finishResult = result;
         reset();
         return finishResult;
     }
 
-    public void add(String message) {
+    void add(String message) {
         if(message.equals(string)){
             counter++;
             return;
