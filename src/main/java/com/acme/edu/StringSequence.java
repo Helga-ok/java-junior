@@ -7,7 +7,7 @@ public class StringSequence {
 
     public String getResult() {
         add("");
-        String finishResult = result + System.lineSeparator();
+        String finishResult = result;
         reset();
         return finishResult;
     }
@@ -17,14 +17,14 @@ public class StringSequence {
             counter++;
             return;
         }
-        switch(counter) {
-            case 0: //result += message;
-                break;
-            case 1: result += System.lineSeparator();
-                break;
-            default: result += " (x" + counter + ")" + System.lineSeparator();
-                break;
+
+        if (counter > 1) {
+            result += " (x" + counter + ")";
         }
+        if (counter > 0) {
+            result += System.lineSeparator();
+        }
+
         counter = 1;
         string = message;
         result += message;

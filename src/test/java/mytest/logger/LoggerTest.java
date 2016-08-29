@@ -61,7 +61,7 @@ public class LoggerTest {
         //endregion
 
         //region Then
-        verify(saverStub).save("string: str1");
+        verify(saverStub).save("string: str1" + System.lineSeparator());
         //endregion
     }
 }
