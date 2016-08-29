@@ -12,7 +12,7 @@ public class LoggerTest {
     //endregion
 
     @Test
-    public void shouldPrintTypeAndCharacterWhenCharacterLogged() throws Exception, LogException {
+    public void shouldPrintTypeAndCharacterWhenCharacterLogged() throws LogException, SaveException {
         //region Given
         Saver saverStub = mock(Saver.class);
         Decorator decoratorStub = mock(Decorator.class);
@@ -44,6 +44,24 @@ public class LoggerTest {
         //region Then
         verify(decoratorStub).decorate("primitive: true");
         verify(saverStub).save("primitive: true");
+        //endregion
+    }
+
+    @Test
+    public void shouldPrintTypeAndStringWhenStringLogged() throws DecorateException, SaveException, LogException {
+        //region Given
+        Saver saverStub = mock(Saver.class);
+        Decorator decoratorDummy = mock(Decorator.class);
+        Logger logger = new Logger(decoratorDummy, saverStub);
+        //endregion
+
+        //region When
+        logger.log("str1");
+        logger.terminate();
+        //endregion
+
+        //region Then
+        verify(saverStub).save("string: str1");
         //endregion
     }
 }
