@@ -8,5 +8,5 @@ public interface Saver {
      * Save message.
      * @param message the string to save.
      */
-    void save(String message);
+    void save(String message) throws SaveException;
 }
