@@ -82,21 +82,24 @@ public class Logger {
      */
     public void log(Object message) throws LogException {
         String result;
-        if(message instanceof String) {
-            currentType = Type.STRING;
-            result = "string: ";
-            stringSequence.add(result + message);
-        } else {
-            result = "reference: ";
-            for (Saver saver:savers) {
-                try {
-                    saver.save(result + message);
-                } catch (SaveException e) {
-                    e.printStackTrace();
-                    throw new LogException(e);
-                }
-            }
+        result = "reference: ";
+        for (Saver saver:savers) {
+          try {
+            saver.save(result + message);
+          } catch (SaveException e) {
+            e.printStackTrace();
+            throw new LogException(e);
+          }
         }
+    }
+
+    /**
+     * Log String.
+     * @param message string to be logged.
+     */
+    public void log(String message) {
+        currentType = Type.STRING;
+        stringSequence.add("string: " + message);
     }
 
     /**
