@@ -61,4 +61,22 @@ public class LoggerTest {
         verify(saverStub).save("string: str1" + System.lineSeparator());
         //endregion
     }
+
+    @Test
+    public void shouldPrintTypeAndIntegerWhenOneIntegerLogged() throws LogException, SaveException {
+        //region Given
+        Saver saverStub = mock(Saver.class);
+        Decorator decoratorStub = mock(Decorator.class);
+        Logger logger = new Logger(decoratorStub, saverStub);
+        //endregion
+
+        //region When
+        logger.log(1);
+        logger.terminate();
+        //endregion
+
+        //region Then
+        verify(saverStub).save("primitive: 1");
+        //endregion
+    }
 }
