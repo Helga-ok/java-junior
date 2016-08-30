@@ -18,6 +18,11 @@ package com.acme.edu;
      * @return wrapped message.
      */
     public String decorate(String message) throws DecorateException {
-        return prefix + message + postfix + System.lineSeparator();
+        try {
+            return prefix + message + postfix + System.lineSeparator();
+        } catch(NullPointerException e) {
+            e.printStackTrace();
+            throw new DecorateException(e);
+        }
     }
 }
