@@ -1,7 +1,5 @@
 package com.acme.edu;
 
-import java.io.IOException;
-
 /**
  * ConsoleSaver displays message on the screen.
  */
