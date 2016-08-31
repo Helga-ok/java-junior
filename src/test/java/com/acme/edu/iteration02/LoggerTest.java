@@ -24,7 +24,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogSequentIntegersAsSum() throws IOException, LogException {
         //region when
-        Saver consoleSaver = message -> System.out.println(message);
+        //Saver consoleSaver = message -> System.out.println(message);
+        Saver consoleSaver = new ConsoleSaver();
         Logger logger = new Logger(new Decorator(" ", " "), consoleSaver);
         logger.log("str 1");
         logger.log(1);
@@ -50,7 +51,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() throws LogException {
         //region when
-        Saver consoleSaver = message -> System.out.println(message);
+        //Saver consoleSaver = message -> System.out.println(message);
+        Saver consoleSaver = new ConsoleSaver();
         Logger logger = new Logger(new Decorator(" ", " "), consoleSaver);
         logger.log("str 1");
         logger.log(10);
@@ -77,7 +79,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogCorrectlyByteOverflowWhenSequentBytes() throws LogException {
         //region when
-        Saver consoleSaver = message -> System.out.println(message);
+        //Saver consoleSaver = message -> System.out.println(message);
+        Saver consoleSaver = new ConsoleSaver();
         Logger logger = new Logger(new Decorator(" ", " "), consoleSaver);
         logger.log("str 1");
         logger.log((byte)10);
@@ -101,7 +104,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException, LogException {
         //region when
-        Saver consoleSaver = message -> System.out.println(message);
+        //Saver consoleSaver = message -> System.out.println(message);
+        Saver consoleSaver = new ConsoleSaver();
         Logger logger = new Logger(new Decorator(" ", " "), consoleSaver);
         logger.log("str 1");
         logger.log("str 2");
