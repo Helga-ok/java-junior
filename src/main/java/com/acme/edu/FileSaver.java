@@ -15,7 +15,7 @@ public class FileSaver implements Saver {
     /**
      * Saves message into the file.
      * @param message the string to save.
-     * @throws SaveException
+     * @throws SaveException when passed IOException
      */
     @Override
     public void save(String message) throws SaveException {
@@ -31,5 +31,10 @@ public class FileSaver implements Saver {
             e.printStackTrace();
             throw new SaveException(e);
         }
+    }
+
+    @Override
+    public void close() throws IOException {
+
     }
 }

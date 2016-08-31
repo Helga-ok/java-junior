@@ -1,9 +1,11 @@
 package com.acme.edu;
 
+import java.io.IOException;
+
 /**
  * ConsoleSaver displays message on the screen.
  */
-class ConsoleSaver implements Saver {
+public class ConsoleSaver implements Saver {
     /**
      * Display message on the screen.
      * @param message the string to save.
@@ -16,5 +18,10 @@ class ConsoleSaver implements Saver {
             e.printStackTrace();
             throw new SaveException(e);
         }
+    }
+
+    @Override
+    public void close() throws IOException {
+
     }
 }

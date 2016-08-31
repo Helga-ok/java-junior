@@ -18,6 +18,7 @@ public class FileSaverTest {
     public void shouldPrintTypeAndCharacterWhenCharacterLogged() throws SaveException, IOException {
         //region Given
         String fileName = "log.txt";
+        String filePath = "." + File.separator + "logs" + File.separator + fileName;
         FileSaver fileSaver = new FileSaver(fileName);
         //endregion
 
@@ -27,7 +28,6 @@ public class FileSaverTest {
         //endregion
 
         //region Then
-        String filePath = "." + File.separator + "logs" + File.separator + fileName;
         String everything = FileUtils.readFileToString(new File(filePath), "UTF-8");
         assertThat(myString).contains(everything);
         //endregion
