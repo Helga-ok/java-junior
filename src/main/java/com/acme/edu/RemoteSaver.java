@@ -5,7 +5,6 @@ import java.io.Closeable;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class RemoteSaver implements Saver, Closeable {
     private DataOutputStream out;

@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * The class listens to socket and processes the date.
+ * The class listens to socket and processes the data.
  */
 public class Server {
     /**
